@@ -5,7 +5,9 @@ class Cache {
 
     // create client and check for any connection error
     constructor(){
-        this.client = createClient()
+        const redisURL = process.env.REDIS_URL || 'redis://localhost:6379'
+        console.log(redisURL);
+        this.client = createClient({url: redisURL})
         this.client.on('err', (err) => console.log('Redis client error: ', err))
     }
 
