@@ -20,7 +20,7 @@ app.post('/api/v1/is-fake', async (req,res) => {
 
     if(userCache !== null){ // cache hit
         isFake = userCache
-    }else if('user' in req.body){ // cache miss
+    }else if(req.body.user !== null && req.body.user !== undefined ){ // cache miss
         
         // fetch the result from the sagemaker
         const response = await axios.post('https://wl1nlfxw9f.execute-api.ap-south-1.amazonaws.com/prod', {
